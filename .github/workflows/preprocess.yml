@@ -1,0 +1,45 @@
+name: Preprocess YAML contracts to Marmite ready Markdowns
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/**/*.yaml'
+      - 'contracts/**/*.yml'
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for git log
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Build the project
+        working-directory: ./preprocess
+        run: cargo build --release
+
+      - name: Run the converter
+        working-directory: ./preprocess
+        run: cargo run --release
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add content/posts
+          git commit -m "Automated conversion of YAML to Markdown [skip ci]" || echo "No changes to commit"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
