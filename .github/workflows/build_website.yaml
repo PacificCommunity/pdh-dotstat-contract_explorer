@@ -2,8 +2,18 @@ name: GH Pages Deploy
 
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
+    paths-ignore:
+      - 'contracts/**/*.yaml'
+      - 'contracts/**/*.yml'
+      - 'preprocess/**'
+  workflow_run:
+    workflows: ["Preprocess YAML to Markdown"]
+    branches:
+      - main
+    types:
+      - completed
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

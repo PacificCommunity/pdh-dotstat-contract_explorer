@@ -1,4 +1,4 @@
-name: Preprocess YAML contracts to Marmite ready Markdowns
+name: Preprocess YAML to Markdown
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
     paths:
       - 'contracts/**/*.yaml'
       - 'contracts/**/*.yml'
+      - 'preprocess/**'
 
 jobs:
   preprocess:
@@ -22,6 +23,27 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+
+      # Determine if the preprocess code has changed
+      - name: Check for changes in preprocess code
+        id: preprocess_changes
+        run: |
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          echo "Changed files: $CHANGED_FILES"
+          if echo "$CHANGED_FILES" | grep -q '^preprocess/'; then
+            echo "::set-output name=preprocess_changed::true"
+          else
+            echo "::set-output name=preprocess_changed::false"
+          fi
+
+      # Conditionally delete Markdown outputs
+      - name: Delete Markdown outputs if preprocess code changed
+        if: steps.preprocess_changes.outputs.preprocess_changed == 'true'
+        run: |
+          echo "Preprocess code changed. Deleting Markdown outputs."
+          rm -rf content/posts/*.md
+        working-directory: ${{ github.workspace }}
 
       - name: Build the project
         working-directory: ./preprocess
