@@ -1,0 +1,10 @@
+[package]
+name = "parser_yaml_md"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_yaml = "0.9"
+serde = { version = "1.0", features = ["derive"] }
+yaml-rust = "0.4"
+glob = "0.3"

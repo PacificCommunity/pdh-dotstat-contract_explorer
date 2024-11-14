@@ -1,13 +1,8 @@
-name: Your Blog
-tagline: Things you talk about
-url: https://YOURUSER.github.io/blog
+name: SID Data Contracts
+tagline: Data just wanna have CARE
+url: https://PacificCommunity.github.io/pdh-dotstat-contract_explorer
 menu:
   - ["About", "about.html"]
   - ["Pages", "pages.html"]
   - ["Tags", "tags.html"]
-  - ["Follow me", "https://mastodon.social/@YOURUSER"]
-  - ["Github", "https://github.com/rochacbruno/marmite"]
-
-
-# More options available to customize the website
-# read on https://rochacbruno.github.io/marmite/tag/customization.html
+  - ["Github", "https://github.com/PacificCommunity/pdh-dotstat-contract_explorer"]
