@@ -1,0 +1,13 @@
+name: Your Blog
+tagline: Things you talk about
+url: https://YOURUSER.github.io/blog
+menu:
+  - ["About", "about.html"]
+  - ["Pages", "pages.html"]
+  - ["Tags", "tags.html"]
+  - ["Follow me", "https://mastodon.social/@YOURUSER"]
+  - ["Github", "https://github.com/rochacbruno/marmite"]
+
+
+# More options available to customize the website
+# read on https://rochacbruno.github.io/marmite/tag/customization.html
