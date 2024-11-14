@@ -45,11 +45,11 @@ date: 2024-11-15
 
 ### name  
 
-            Yohannes Kinfu (Data Product Owner)
+            Y. K. (Data Product Owner)
 
 ### email  
 
-            yohannesk@spc.int
+            y k  at spc.int
 
 # tags  
 
