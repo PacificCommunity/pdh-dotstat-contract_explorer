@@ -6,3 +6,4 @@ menu:
   - ["Pages", "pages.html"]
   - ["Tags", "tags.html"]
   - ["Github", "https://github.com/PacificCommunity/pdh-dotstat-contract_explorer"]
+enable_search: true
