@@ -219,7 +219,7 @@ fn extract_tags(doc: &Yaml) -> Option<Vec<String>> {
 fn get_last_commit_date(repo_root: &Path, file_path: &Path) -> Option<String> {
     let relative_path = file_path.strip_prefix(repo_root).ok()?;
     let output = Command::new("git")
-        .args(&["log", "-1", "--date=iso", "--format=%cd", "--", &relative_path.to_string_lossy()])
+        .args(&["log", "-1", "--format=%cs", "--", &relative_path.to_string_lossy()])
         .current_dir(repo_root)
         .output()
         .ok()?;
